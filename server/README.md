@@ -1,0 +1,2 @@
+- to initialization run 'npm install'
+- to run server run 'npm run dev'
