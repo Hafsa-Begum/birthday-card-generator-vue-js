@@ -18,6 +18,7 @@ let upload = multer({
 }).single("image");
 
 router.get("/", API.fetchAllCard);
+router.get("/sorted/birthday", API.fetchSortedCard);
 router.get("/:id", API.fetchCardById);
 router.post("/", upload, API.createCard);
 router.patch("/:id", upload, API.updateCard);

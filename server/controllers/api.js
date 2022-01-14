@@ -12,6 +12,16 @@ module.exports = class API {
             res.status(404).json({ message: err.message });
         }
     }
+    //fetch all sorted cards
+    static async fetchSortedCard(req, res) {
+        try {
+            const cards = await Card.find().sort({ birthday: -1 });
+            console.log(cards)
+            res.status(200).json(cards);
+        } catch (err) {
+            res.status(404).json({ message: err.message });
+        }
+    }
     //fetch card by ID
     static async fetchCardById(req, res) {
         const id = req.params.id;
