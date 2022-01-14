@@ -38,8 +38,15 @@ module.exports = class API {
         const imagename = req.file.filename;
         card.image = imagename;
         try {
-            await Card.create(card);
-            res.status(201).json({ message: "Card created successfully", card })
+            const newCard = await Card.create(card);
+            res.status(201).json({
+                message: "Card created successfully", createdCard: {
+                    _id: newCard._id,
+                    name: newCard.name,
+                    birthday: newCard.birthday.toString(),
+                    image: newCard.image
+                }
+            })
         } catch (err) {
             res.status(400).json({ message: err.message });
         }
