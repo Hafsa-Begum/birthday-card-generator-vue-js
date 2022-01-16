@@ -36,17 +36,11 @@ module.exports = class API {
     static async createCard(req, res) {
         const card = req.body;
         const imagename = req.file.filename;
+        console.log(imagename)
         card.image = imagename;
         try {
             const newCard = await Card.create(card);
-            res.status(201).json({
-                message: "Card created successfully", createdCard: {
-                    _id: newCard._id,
-                    name: newCard.name,
-                    birthday: newCard.birthday.toString(),
-                    image: newCard.image
-                }
-            })
+            res.status(201).json({ message: "Card created successfully", newCard })
         } catch (err) {
             res.status(400).json({ message: err.message });
         }
